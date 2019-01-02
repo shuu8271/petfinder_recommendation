@@ -1,4 +1,5 @@
 import pandas as pd, numpy as np, requests, json
+import random
 from src.api_data import dog_breed_list
 
 breed_list = dog_breed_list()
@@ -35,12 +36,11 @@ def make_user_feature(df, selection):
     #input is a set containing pet_id selections
     '''
     convert user input list to create user-feature matrix
-    input contain user_id with pet selection(pet_id)
+    selection contains set of pet selection(pet_id)
     df is the all data in database
     '''
-    #input_df = pd.read_csv(input)
-    last_user_id = 1000001
-    d = {last_user_id:x for x in selection}
+    current_user_id = random.randint(1000001, 2000000)
+    d = {current_user_id:x for x in selection}
     input_df = pd.DataFrame(d, columns = ['user_id', 'pet_id'] ,index=range(len(selection)))
     user_df = pd.DataFrame(None, columns=['user_id',*feature_list])
 
@@ -70,7 +70,7 @@ def make_user_feature(df, selection):
             selected_breeds = ''.join(df[df['pet_id']==pet]['breeds'].tolist()).split(', ')
             for breed in selected_breeds:
                 user_df.loc[idx, breed] += 1
-    last_user_id += 1
+    current_user_id += 1
     return user_df
 
 

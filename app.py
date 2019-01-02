@@ -34,7 +34,6 @@ else:
         my_coll.update_one(key, {'$setOnInsert': data_json}, upsert=True)
 
 
-
 # -------------routes----------------
 
 @app.route('/')
@@ -89,24 +88,7 @@ if __name__ == "__main__":
     df = pd.DataFrame(list(my_coll.find()))
     pet_feature_df = make_pet_feature(df)
 
-    # input is temporary, should be a input file name containing selection
-    #user_feature_df = make_user_feature(df, input=pd.DataFrame({'user_id':100001,'pet_id':43384220},index=range(1)))
-    # recomm_mat = np.dot(user_feature_df.iloc[:, 1:], pet_feature_df.iloc[:, 1:].T)
-
-    # return 10 highest number ids, names, breeds
-    # max_idx_10 =  recomm_mat.argsort(axis=1)[:, :-11:-1]
-    # recomm_id = list()
-    
-    # for idx in max_idx_10[0]:
-    #     recomm_id.append(pet_feature_df.loc[idx, 'pet_id'].tolist())
     
 
-    # recomm_names = list()
-    # recomm_breeds = list()
-    # recomm_images = list()
-    # for id in recomm_id:
-    #     recomm_names.append(df[df['pet_id']==id]['name'].values[0])
-    #     recomm_breeds.append(df[df['pet_id']==id]['breeds'].values[0])
-    #     recomm_images.append(df[df['pet_id']==id]['media'].values[0])
 
     app.run(host='0.0.0.0', port=8080, debug=True)
