@@ -47,7 +47,7 @@ def mainproject():
     random_df = random_pets(db=my_db, coll=my_coll, num=30)
     random_ids = random_df['pet_id'].tolist()
     image_list = random_df['media'].tolist()
-
+    selection = dict()
     
     return render_template('capstone.html', random_pets=zip(random_ids, image_list))
 
