@@ -4,7 +4,7 @@ import pandas as pd
 import csv
 import pymongo
 from src.data_cleanup import cleanup_data
-from data/api_key import api_key
+from data.api_key import api_key
 
 api_url = f'http://api.petfinder.com/pet.find?key={api_key}
 
