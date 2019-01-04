@@ -4,7 +4,9 @@ import pandas as pd
 import csv
 import pymongo
 from src.data_cleanup import cleanup_data
+from data/api_key import api_key
 
+api_url = f'http://api.petfinder.com/pet.find?key={api_key}''
 
 # -----------initial data------------
 def download_data(locations, offset=0):
@@ -12,16 +14,14 @@ def download_data(locations, offset=0):
         init_parameters = {'animal': 'dog', 'format': 'json',
                            'output': 'full', 'location': locations,
                            'count': 1000}
-        pet_result = requests.get("http://api.petfinder.com/pet.find?key=4b633627fad19b892a12b6e9f39b95a2",
-                                  params=init_parameters)
+        pet_result = requests.get(api_url, params=init_parameters)
         offset = pet_result.json()['petfinder']['lastOffset'].get('$t', 0)
         data = pet_result.json()['petfinder']['pets']['pet']
     else:
         parameters = {'animal': 'dog', 'format': 'json', 'output': 'full',
                       'offset': str(offset), 'location': locations,
                       'count': 200}
-        pet_result = requests.get("http://api.petfinder.com/pet.find?key=4b633627fad19b892a12b6e9f39b95a2",
-                                  params=parameters)
+        pet_result = requests.get(api_url, params=parameters)
 #        offset = pet_result.json()['petfinder']['lastOffset'].get('$t',0)
         data = pet_result.json()['petfinder']['pets']['pet']
     return data
