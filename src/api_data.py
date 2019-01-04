@@ -6,7 +6,7 @@ import pymongo
 from src.data_cleanup import cleanup_data
 from data.api_key import api_key
 
-api_url = f'http://api.petfinder.com/pet.find?key={api_key}
+api_url = f'http://api.petfinder.com/pet.find?key={api_key}'
 
 # -----------initial data------------
 def download_data(locations, offset=0):

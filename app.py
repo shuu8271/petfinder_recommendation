@@ -62,13 +62,13 @@ def mainproject():
 
 
 @app.route('/recommresult', methods=['GET', 'POST'])
-def recomm_result(selected_ids):
+def recomm_result():
     selected_ids = set([SelectionForm(request.form).selection1.data,
                        SelectionForm(request.form).selection2.data,
                        SelectionForm(request.form).selection3.data,
                        SelectionForm(request.form).selection4.data,
                        SelectionForm(request.form).selection5.data])
-
+    selected_ids.remove(None)
     user_feature_df = make_user_feature(df, selected_ids)
 
     recomm_mat = np.dot(user_feature_df.iloc[:, 1:],
@@ -88,10 +88,9 @@ def recomm_result(selected_ids):
         recomm_breeds.append(df[df['pet_id'] == id]['breeds'].values[0])
         recomm_images.append(df[df['pet_id'] == id]['media'].values[0])
 
-    return render_template('recom_result.html', top10=zip(recomm_id,
-                                                          recomm_names,
-                                                          recomm_breeds,
-                                                          recomm_images))
+    return render_template('recom_result.html', selection=selected_ids,\
+                           top10=zip(recomm_id, recomm_names, recomm_breeds,
+                                     recomm_images))
 
 # -------------main------------------
 if __name__ == "__main__":
