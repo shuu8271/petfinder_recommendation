@@ -6,11 +6,12 @@ from src.data_cleanup import cleanup_data
 from src.random_pet import random_pets
 from src.feature_matrix import make_pet_feature, make_user_feature
 from form import SelectionForm
+from data.api_key import form_key
 
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = '3dd325de1cbf452a9664d99fa4d79a5f'
+app.config['SECRET_KEY'] = form_key
 
 # initialize database
 my_client = pymongo.MongoClient('mongodb://localhost:27017/')
