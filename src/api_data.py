@@ -29,8 +29,7 @@ def download_data(locations, offset=0):
 
 def dog_breed_list():
     breed_parameters = {'animal': 'dog', 'format': 'json'}
-    dog_breeds = requests.get("http://api.petfinder.com/breed.list?key=4b633627fad19b892a12b6e9f39b95a2",
-                              params=breed_parameters)
+    dog_breeds = requests.get(api_url, params=breed_parameters)
 
     dog_breeds_json = dog_breeds.json()['petfinder']['breeds']['breed']
     breed_set = set()
