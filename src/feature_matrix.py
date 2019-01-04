@@ -1,9 +1,18 @@
-import pandas as pd, numpy as np, requests, json
+import pandas as pd, numpy as np
+import requests
+import json
 import random
-from src.api_data import dog_breed_list
+import csv
 
-breed_list = dog_breed_list()
-feature_list = ['size_S', 'size_M', 'size_L', 'size_XL', *sorted(list(breed_list))]
+import os
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
+
+
+#breed_list = dog_breed_list()
+with open('data/breed_list.csv', 'r') as f:
+    reader = csv.reader(f)
+    breed_list = list(reader)[0]
+feature_list = ['size_S', 'size_M', 'size_L', 'size_XL', *sorted(breed_list)]
 
 
 def breed_percentage(df):
@@ -13,9 +22,10 @@ def breed_percentage(df):
     for i in range(len(df)):
         temp = list()
         temp = df['breeds'][i].split(', ') # breeds included in one record
-        for item in temp: 
+        for item in temp:
             df.loc[i, item] = 1/ len(temp)
     return df
+
 
 def make_pet_feature(df, breedlist=list(breed_list)):
     '''
@@ -72,6 +82,3 @@ def make_user_feature(df, selection):
                 user_df.loc[idx, breed] += 1
     current_user_id += 1
     return user_df
-
-
-

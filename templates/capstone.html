@@ -5,11 +5,11 @@
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
+
 	<title>Project Main page</title>
 
 	<link rel="shortcut icon" href="static/images/gt_favicon.png">
-	
+
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="static/css/bootstrap.min.css">
 	<link rel="stylesheet" href="static/css/font-awesome.min.css">
@@ -49,7 +49,7 @@
 			</div><!--/.nav-collapse -->
 
 		</div>
-	</div> 
+	</div>
 	<!-- /.navbar -->
 
 	<header id="head" class="secondary"></header>
@@ -63,7 +63,7 @@
 		</ol>
 
 		<div class="row">
-			
+
 			<!-- Article main content -->
 			<article class="col-md-8 maincontent">
 				<header class="page-header">
@@ -92,20 +92,35 @@
 
 			</article>
 			<!-- /Article -->
-			
+
 			<!-- Sidebar -->
 			<aside class="col-md-4 sidebar sidebar-right colfixed">
 
 				<div class="row widget">
 					<div class="col-xs-12">
-						<h4>Pet Ids</h4>
-						<p>Input Form</p>
-						<form action="/recommresult" method="POST">
-							<p>Pet Id #1<input type="number" name="select1"></p>
-							<p>Pet Id #2<input type="number" name="select2"></p>
-							<p>Pet Id #3<input type="number" name="select3"></p>
-							<p><input class="btn btn-default btn-lg" type="submit" value="SUBMIT"></p>
-						</form>               
+						<h4>Enter Pet IDs</h4>
+						<form action="{{ url_for('recomm_result') }}" method="POST">
+							{{ form.hidden_tag() }}
+							<fieldset>
+								<legend>
+									<div>
+										{{ form.selection1.label(class="text-sm") }}
+										{{ form.selection1 }}
+										{{ form.selection2.label(class="text-sm") }}
+										{{ form.selection2 }}
+										{{ form.selection3.label(class="text-sm") }}
+										{{ form.selection3 }}
+										{{ form.selection4.label(class="text-sm") }}
+										{{ form.selection4 }}
+										{{ form.selection5.label(class="text-sm") }}
+										{{ form.selection5 }}
+									</div>
+								</legend>
+							</fieldset>
+							<div>
+								{{ form.submit(class="btn btn-default btn-sm") }}
+							</div>
+						</form>
 					</div>
 				</div>
 			</aside>
@@ -113,21 +128,21 @@
 
 		</div>
 	</div>	<!-- /container -->
-	
+
 
 	<footer id="footer" class="top-space">
 
 		<div class="footer1">
 			<div class="container">
 				<div class="row">
-					
+
 					<div class="col-md-3 widget">
 						<h3 class="widget-title">Contact</h3>
 						<div class="widget-body">
 							<p><a href="mailto:yhcchen@outlook.com">yhcchen@outlook.com</a><br>
 								<br>
 								New York, NY
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -136,7 +151,7 @@
 						<div class="widget-body">
 							<p class="follow-me-icons clearfix">
 								<a href="https://www.github.com/shuu8271" target=_blank><i class="fa fa-github fa-2"></i></a>
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -150,7 +165,7 @@
 
 						<p class="widget-title">Interested in this template?</p>
 						<div class="widget-body">
-							Download progressus bootstrap template 
+							Download progressus bootstrap template
 								<a href="https://www.gettemplate.com/demo/progressus/index.html" target=_blank>here</a>
 						</div>
 
@@ -163,11 +178,11 @@
 		<div class="footer2">
 			<div class="container">
 				<div class="row">
-					
+
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="/index">Home</a> | 
+								<a href="/index">Home</a> |
 								<a href="/mainproject">Capstone Page</a>
 							</p>
 						</div>
@@ -176,7 +191,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2018, Cheryl Chen. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+								Copyright &copy; 2018, Cheryl Chen. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a>
 							</p>
 						</div>
 					</div>
@@ -184,8 +199,8 @@
 				</div> <!-- /row of widgets -->
 			</div>
 		</div>
-	</footer>	
-		
+	</footer>
+
 
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
