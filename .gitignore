@@ -1,5 +1,14 @@
 src/__pycache__/
+src/analysis/
+src/freezing
+src/models
+src/training
+frozen/
+graphs/
 data/api_key.py
+data/stanford_ds/
+data/stanford.tfrecords
+initial_data.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
