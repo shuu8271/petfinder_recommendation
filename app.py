@@ -72,6 +72,5 @@ if __name__ == "__main__":
     df['media'] =df['media'].apply(lambda x: str(x).split(' '))
     pet_feature_df = pd.read_csv('data/pet_feature.csv', index_col=0)
 
-    print(df.columns, pet_feature_df.columns)
 
     app.run(host='0.0.0.0', port=8080, debug=True)
