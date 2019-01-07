@@ -19,7 +19,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/mainproject', methods=['GET', 'POST'])
+@app.route('/mainproject', methods=['GET'])
 def mainproject():
     random_df = df.sample(n=35)
     random_ids = random_df['pet_id'].tolist()
@@ -34,7 +34,7 @@ def mainproject():
                            form = selection_form)
 
 
-@app.route('/recommresult', methods=['GET', 'POST'])
+@app.route('/recommresult', methods=['POST'])
 def recomm_result():
     selected_ids = set([SelectionForm(request.form).selection1.data,
                        SelectionForm(request.form).selection2.data,

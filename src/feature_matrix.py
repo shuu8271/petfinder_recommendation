@@ -29,8 +29,8 @@ def make_pet_feature_120(df, breedlist=breed_list):
             pass
         else:
             # assign breed probability
-	    max_prob = float(0)
-	    max_key = int(0)
+            max_prob = float(0)
+            max_key = int(0)
             for key in range(url_count):
                 # use try/except to skip error when read in image urls
                 try:
@@ -41,7 +41,7 @@ def make_pet_feature_120(df, breedlist=breed_list):
                     print(f"Error at {all_df.loc[i, 'pet_id']}, url: {all_df.loc[i, 'media'][key]}")
             for breed in breedlist:
                 all_df.loc[i, breed] = max_prob_df[max_prob_df['breed']==breed]['prob'].tolist()[0]
-    
+
     pet_features = ['pet_id', *feature_list]
     return all_df[pet_features]
 
@@ -78,5 +78,5 @@ def make_user_feature_120(data_df, pet_feature_df, select_list, breedlist=breed_
 
         for breed in breedlist:
             user_df.loc[0, breed] += float(pet_feature_df[pet_feature_df['pet_id']==pet][breed])
-    
+
     return user_df
