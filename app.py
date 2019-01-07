@@ -41,7 +41,9 @@ def recomm_result():
                        SelectionForm(request.form).selection3.data,
                        SelectionForm(request.form).selection4.data,
                        SelectionForm(request.form).selection5.data])
-    selected_ids.remove(None)
+    if None in selected_ids:
+        selected_ids.remove(None)
+
     user_feature_df = make_user_feature_120(df, pet_feature_df, selected_ids)
 
     recomm_mat = np.dot(user_feature_df.iloc[:, 1:],
