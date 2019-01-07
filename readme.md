@@ -12,3 +12,8 @@
   Extract features from API data and calculate recommendation matrix based on user input data
   to make recommendation
 </p>
+
+<h4>Additional Technology Applied</h4>
+<p>
+  Apply deep learning dog classification model to take probability of dog breed types to extract feature from API data
+</p>
