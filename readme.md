@@ -16,5 +16,5 @@
 <h4>Additional Technology Applied</h4>
 <p>
   Apply deep learning dog classification model to take probability of dog breed types to extract feature from API data
-  <br>[source](https://towardsdatascience.com/dog-breed-classification-hands-on-approach-b5e4f88c333e)
+  <br>[source]https://towardsdatascience.com/dog-breed-classification-hands-on-approach-b5e4f88c333e
 </p>
