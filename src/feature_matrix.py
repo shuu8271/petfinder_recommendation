@@ -29,9 +29,9 @@ def make_pet_feature_120(df, breedlist=breed_list):
             pass
         else:
             # assign breed probability
+	    max_prob = float(0)
+	    max_key = int(0)
             for key in range(url_count):
-                max_prob = float(0)
-                max_key = int(0)
                 # use try/except to skip error when read in image urls
                 try:
                     temp_prob_df = classify('uri', all_df.loc[i, 'media'][key])
