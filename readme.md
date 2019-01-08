@@ -13,4 +13,4 @@
   to make recommendation
 </p>
 
-Switch to dogclassification branch to check on recommendation implementing with dog classification model
+<h5>Switch to dogclassification branch to check on recommendation implementing with dog classification model</h5>
