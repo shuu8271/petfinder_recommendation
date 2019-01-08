@@ -67,10 +67,10 @@
 			<p class="text-muted">Your Selection: {{ selection }}</p>
 			<table>
 				<tbody>
-					<tr><td>Pet ID</td><td>Pet Name</td><td>Pet Breed</td><td>Images</td></tr>
-					{% for id, name, breed, images in top10 %}
+					<tr><td>Pet ID</td><td>Pet Name</td><td width ="75">Pet Description</td><td>Pet Breed</td><td>Images</td></tr>
+					{% for id, name, desc, breed, images in top10 %}
 					<tr>
-						<td>{{ id }}</td><td>{{ name }}</td><td>{{ breed }}</td>
+						<td>{{ id }}</td><td>{{ name }}</td><td width ="75">{{ desc }}</td><td>{{ breed }}</td>
 						{% for url in images %}
 						<td><img src={{ url }} alt="{{ id }}" style="width: 180px"></td>
 						{% endfor %}

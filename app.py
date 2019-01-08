@@ -36,36 +36,39 @@ def mainproject():
 
 @app.route('/recommresult', methods=['POST'])
 def recomm_result():
-    selected_ids = set([SelectionForm(request.form).selection1.data,
-                       SelectionForm(request.form).selection2.data,
-                       SelectionForm(request.form).selection3.data,
-                       SelectionForm(request.form).selection4.data,
-                       SelectionForm(request.form).selection5.data])
-    if None in selected_ids:
-        selected_ids.remove(None)
+    if request.method == 'POST':
+        selected_ids = set([SelectionForm(request.form).selection1.data,
+                           SelectionForm(request.form).selection2.data,
+                           SelectionForm(request.form).selection3.data,
+                           SelectionForm(request.form).selection4.data,
+                           SelectionForm(request.form).selection5.data])
+        if None in selected_ids:
+            selected_ids.remove(None)
 
-    user_feature_df = make_user_feature_120(df, pet_feature_df, selected_ids)
+        user_feature_df = make_user_feature_120(df, pet_feature_df, selected_ids)
 
-    recomm_mat = np.dot(user_feature_df.iloc[:, 1:],
-                        pet_feature_df.iloc[:, 1:].T)
-    # return 10 highest number ids, names, breeds
-    max_idx_10 = recomm_mat.argsort(axis=1)[:, :-11:-1]
-    recomm_id = list()
+        recomm_mat = np.dot(user_feature_df.iloc[:, 1:], pet_feature_df.iloc[:, 1:].T)
+         # return 10 highest number ids, names, breeds
+        max_idx_10 =  recomm_mat.argsort(axis=1)[:, :-11:-1]
+        recomm_id = list()
 
-    for idx in max_idx_10[0]:
-        recomm_id.append(pet_feature_df.loc[idx, 'pet_id'].tolist())
+        for idx in max_idx_10[0]:
+            recomm_id.append(pet_feature_df.loc[idx, 'pet_id'].tolist())
 
-    recomm_names = list()
-    recomm_breeds = list()
-    recomm_images = list()
-    for id in recomm_id:
-        recomm_names.append(df[df['pet_id'] == id]['name'].values[0])
-        recomm_breeds.append(df[df['pet_id'] == id]['breeds'].values[0])
-        recomm_images.append(df[df['pet_id'] == id]['media'].values[0])
 
-    return render_template('recom_result.html', selection=selected_ids,\
-                           top10=zip(recomm_id, recomm_names, recomm_breeds,
-                                     recomm_images))
+        recomm_names = list()
+        recomm_breeds = list()
+        recomm_desc = list()
+        recomm_images = list()
+        for id in recomm_id:
+            recomm_names.append(df[df['pet_id']==id]['name'].tolist()[0])
+            recomm_breeds.append(df[df['pet_id']==id]['breeds'].tolist()[0])
+            recomm_desc.append(df[df['pet_id']==id]['description'].values[0])
+            recomm_images.append(df[df['pet_id']==id]['media'].values[0])
+
+    return render_template('recom_result.html',selection=selected_ids,
+                           top10= zip(recomm_id, recomm_names, recomm_desc,
+                                      recomm_breeds, recomm_images))
 
 # -------------main------------------
 if __name__ == "__main__":
