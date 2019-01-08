@@ -12,3 +12,5 @@
   Extract features from API data and calculate recommendation matrix based on user input data
   to make recommendation
 </p>
+
+Switch to dogclassification branch to check on recommendation implementing with dog classification model
